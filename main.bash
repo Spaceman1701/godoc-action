@@ -17,10 +17,10 @@ for (( ; ; )); do
     break
   fi
 done
+wget --quiet --mirror --show-progress --page-requisites --execute robots=off --no-parent "http://localhost:8080/pkg/$MODULE_ROOT/"
 
 git checkout origin/gh-pages || git checkout -b gh-pages
 
-wget --quiet --mirror --show-progress --page-requisites --execute robots=off --no-parent "http://localhost:8080/pkg/$MODULE_ROOT/"
 echo "generated doc"
 rm -rf doc lib "$PR_NUMBER" pkg # Delete previous documents.
 mv localhost:8080/* .
