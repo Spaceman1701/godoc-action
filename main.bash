@@ -27,7 +27,7 @@ mv localhost:8080/* .
 echo "moved doc to root"
 rm -rf localhost:8080
 find pkg -type f -exec sed -i  "s#/lib/godoc#/$REPO_NAME/lib/godoc#g" {} +
-mv "pkg/$REPO_NAME/index.html" .
+mv "pkg/$MODULE_ROOT/index.html" .
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
 #[ -d "$PR_NUMBER" ] || mkdir "$PR_NUMBER"
