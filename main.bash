@@ -8,9 +8,9 @@ MODULE_ROOT="$(go list -m)"
 REPO_NAME="$(basename $(echo $GITHUB_REPOSITORY))"
 PR_NUMBER="$(echo $GITHUB_REF | sed 's#refs/pull/\(.*\)/.*#\1#')"
 
-mkdir -p "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
-cp -r * "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
-(cd /tmp && godoc -http localhost:8080 &)
+#mkdir -p "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
+#cp -r * "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
+godoc -http localhost:8080 &
 
 for (( ; ; )); do
   sleep 0.5
