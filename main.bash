@@ -26,19 +26,20 @@ rm -rf doc lib "$PR_NUMBER" pkg # Delete previous documents.
 mv localhost:8080/* .
 echo "moved doc to root"
 rm -rf localhost:8080
-find pkg -type f -exec sed -i "s#/lib/godoc#/$REPO_NAME/lib/godoc#g" {} +
+find pkg -type f -exec sed -i  "s#/lib/godoc#/$REPO_NAME/lib/godoc#g" {} +
 
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
-[ -d "$PR_NUMBER" ] || mkdir "$PR_NUMBER"
-mv pkg "$PR_NUMBER"
-git add "$PR_NUMBER" doc lib
+#[ -d "$PR_NUMBER" ] || mkdir "$PR_NUMBER"
+#mv pkg "$PR_NUMBER"
+#git add "$PR_NUMBER" doc lib
+git add pkg doc lib
 git commit -m "Update documentation"
 
 GODOC_URL="https://$(dirname $(echo $GITHUB_REPOSITORY)).github.io/$REPO_NAME/$PR_NUMBER/pkg/$MODULE_ROOT/index.html"
 
-if ! curl -sH "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" | grep '## GoDoc' > /dev/null; then
-  curl -sH "Authorization: token $GITHUB_TOKEN" \
-    -d '{ "body": "## GoDoc\n'"$GODOC_URL"'" }' \
-    "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
-fi
+# if ! curl -sH "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" | grep '## GoDoc' > /dev/null; then
+#   curl -sH "Authorization: token $GITHUB_TOKEN" \
+#     -d '{ "body": "## GoDoc\n'"$GODOC_URL"'" }' \
+#     "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
+# fi
