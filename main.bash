@@ -11,7 +11,7 @@ PR_NUMBER="$(echo $GITHUB_REF | sed 's#refs/pull/\(.*\)/.*#\1#')"
 #mkdir -p "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
 #cp -r * "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
 godoc -http localhost:8080 &
-
+cd /tmp
 for (( ; ; )); do
   sleep 0.5
   if [[ $(curl -so /dev/null -w '%{http_code}' "http://localhost:8080/pkg/$MODULE_ROOT/") -eq 200 ]]; then
