@@ -11,7 +11,6 @@ PR_NUMBER="$(echo $GITHUB_REF | sed 's#refs/pull/\(.*\)/.*#\1#')"
 #mkdir -p "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
 #cp -r * "$GOPATH/src/github.com/$GITHUB_REPOSITORY"
 godoc -http localhost:8080 &
-cd /tmp
 for (( ; ; )); do
   sleep 0.5
   if [[ $(curl -so /dev/null -w '%{http_code}' "http://localhost:8080/pkg/$MODULE_ROOT/") -eq 200 ]]; then
@@ -22,9 +21,10 @@ done
 git checkout origin/gh-pages || git checkout -b gh-pages
 
 wget --quiet --mirror --show-progress --page-requisites --execute robots=off --no-parent "http://localhost:8080/pkg/$MODULE_ROOT/"
-
+echo "generated doc"
 rm -rf doc lib "$PR_NUMBER" # Delete previous documents.
 mv localhost:8080/* .
+echo "moved doc to root"
 rm -rf localhost:8080
 find pkg -type f -exec sed -i "s#/lib/godoc#/$REPO_NAME/lib/godoc#g" {} +
 
