@@ -22,7 +22,7 @@ git checkout origin/gh-pages || git checkout -b gh-pages
 
 wget --quiet --mirror --show-progress --page-requisites --execute robots=off --no-parent "http://localhost:8080/pkg/$MODULE_ROOT/"
 echo "generated doc"
-rm -rf doc lib "$PR_NUMBER" # Delete previous documents.
+rm -rf doc lib "$PR_NUMBER" pkg # Delete previous documents.
 mv localhost:8080/* .
 echo "moved doc to root"
 rm -rf localhost:8080
