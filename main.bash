@@ -26,8 +26,9 @@ rm -rf doc lib "$PR_NUMBER" pkg # Delete previous documents.
 mv localhost:8080/* .
 echo "moved doc to root"
 rm -rf localhost:8080
-find pkg -type f -exec sed -i  "s#/lib/godoc#/$REPO_NAME/lib/godoc#g" {} +
-mv "pkg/$MODULE_ROOT/index.html" .
+find pkg -type f -exec sed -i  "s#/lib/godoc#/$MODULE_ROOT/lib/godoc#g" {} +
+mv "pkg/$MODULE_ROOT/index.html" index.html
+echo "configured for gh-pages"
 git config --local user.email "action@github.com"
 git config --local user.name "GitHub Action"
 #[ -d "$PR_NUMBER" ] || mkdir "$PR_NUMBER"
