@@ -37,7 +37,7 @@ git config --local user.name "GitHub Action"
 mv pkg ../
 mv doc ../
 mv lib ../
-mv index ../
+mv index.html ../
 git add ../pkg ../doc ../lib ../index.html
 git commit -m "Update documentation"
 
