@@ -34,7 +34,7 @@ git config --local user.name "GitHub Action"
 #[ -d "$PR_NUMBER" ] || mkdir "$PR_NUMBER"
 #mv pkg "$PR_NUMBER"
 #git add "$PR_NUMBER" doc lib
-git add pkg doc lib
+git add pkg doc lib index.html
 git commit -m "Update documentation"
 
 GODOC_URL="https://$(dirname $(echo $GITHUB_REPOSITORY)).github.io/$REPO_NAME/$PR_NUMBER/pkg/$MODULE_ROOT/index.html"
