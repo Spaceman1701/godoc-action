@@ -34,6 +34,7 @@ git config --local user.name "GitHub Action"
 #[ -d "$PR_NUMBER" ] || mkdir "$PR_NUMBER"
 #mv pkg "$PR_NUMBER"
 #git add "$PR_NUMBER" doc lib
+rm -rf ../pkg ../doc ../lib ../index.html
 mv pkg ../
 mv doc ../
 mv lib ../
